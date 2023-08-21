@@ -1,0 +1,61 @@
+#define ENA 3
+#define in1 4
+#define in2 7
+#define led 9
+int speed1=0;
+int speed2=51;
+int speed3=102;
+int speed4=153;
+int speed5=204;
+int speed6=255;
+int i;
+void setup() {
+  Serial.begin(9600);
+  pinMode(ENA,OUTPUT);
+  pinMode(in1,OUTPUT);
+  pinMode(in2,OUTPUT);
+  pinMode(led,OUTPUT);
+}
+
+void loop() 
+{
+  while(Serial.available()>0)
+  {
+    i=Serial.parseInt();
+    if(i>=0&&i<=255){
+      analogWrite(led,i);
+    }
+    else if(i==300){
+      digitalWrite(in1,LOW);
+      digitalWrite(in2,HIGH);
+      analogWrite(ENA,speed1);
+    }
+    else if(i==400){
+      digitalWrite(in1,LOW);
+      digitalWrite(in2,HIGH);
+      analogWrite(ENA,speed2);
+    }
+    else if(i==500){
+      digitalWrite(in1,LOW);
+      digitalWrite(in2,HIGH);
+      analogWrite(ENA,speed3);
+    }
+    else if(i==600){
+      digitalWrite(in1,LOW);
+      digitalWrite(in2,HIGH);
+      analogWrite(ENA,speed4);
+    }
+    else if(i==700){
+      digitalWrite(in1,LOW);
+      digitalWrite(in2,HIGH);
+      analogWrite(ENA,speed5);
+    }
+    else if(i==800){
+      digitalWrite(in1,LOW);
+      digitalWrite(in2,HIGH);
+      analogWrite(ENA,speed6);
+    }
+    Serial.print("Received value: ");
+    Serial.println(i);
+  }
+}
